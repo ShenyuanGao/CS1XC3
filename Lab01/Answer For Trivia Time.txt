@@ -1,0 +1,3 @@
+Windows is proprietary, Linux is open source.
+Windows is commercial, Linux is can also be commercial, but often distros are free to use.
+
