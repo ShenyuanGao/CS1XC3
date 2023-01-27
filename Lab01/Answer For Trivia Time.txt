@@ -1,3 +1,7 @@
-Windows is proprietary, Linux is open source.
-Windows is commercial, Linux is can also be commercial, but often distros are free to use.
-
+Q1:
+Windows is easy to use. Windows is proprietary and commercial.
+Linux is open source and can also be commercial, but often distros are free to use. It is hard for someone who is not professional in computer to use.
+Q2:
+There are 2 sign boards with 3 signs on the way to Paradise.
+The first one has a sign and a backsign located in WesternForest
+The second is called dead end below the staircase.
