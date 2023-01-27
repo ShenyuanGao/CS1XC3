@@ -2,3 +2,4 @@ ls : Display the name of files and subdirectories in the directory
 cd [folder] :Change directory
 cd .. :Move up to the parent directory
 less [item] : display the content of the file
+pwd:You can always see what directory you are in by typing pwd in the terminal.
