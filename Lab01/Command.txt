@@ -3,3 +3,9 @@ cd [folder] :Change directory
 cd .. :Move up to the parent directory
 less [item] : display the content of the file
 pwd:You can always see what directory you are in by typing pwd in the terminal.
+mkdir : make a repository
+rm : remove a item from a repository
+sudo :sudo allows a permitted user to execute a command as the superuser or another user, as specified by the security policy.
+man :man command in Linux is used to display the user manual of any command that we can run on the terminal. 
+grep: given one or more files, print all lines in those files that match a particular regular expression pattern.
+cp : copy a item 
