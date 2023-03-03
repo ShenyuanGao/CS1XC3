@@ -1,0 +1,15 @@
+Search Value,Linear Search,Binary Search,Fiboncci Search,Notes
+1,0.004,0.004,0.004,There is no obvious difference between these data. Maybe it is because the 100000 number of data is not large enough to conclude which is faster than another algorithm.
+4,0.003,0.004,0.003,
+22,0.003,0.003,0.004,
+37,0.003,0.004,0.004,
+22906,0.003,0.003,0.004,
+53757,0.004,0.003,0.003,
+112591,0.003,0.004,0.003,
+361940,0.004,0.003,0.004,
+475713,0.01,0.003,0.003,
+893766,0.04,0.003,0.004,
+996637,0.004,0.003,0.004,
+996639,0.004,0.004,0.004,
+996652,0.003,0.003,0.004,
+-996652,0.005,0.003,0.004,

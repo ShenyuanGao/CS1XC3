@@ -1,0 +1,10 @@
+a)the result for both algorithm are same but the second one has more repetition.
+
+b)159 is the most executed line. They are the same.
+
+
+c)No
+
+d)time complextiety and space complexitiety 
+ 
+
