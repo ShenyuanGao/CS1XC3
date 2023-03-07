@@ -1,0 +1,212 @@
+# /etc/profile
+
+# System wide environment and startup programs, for login setup
+# Functions and aliases go in /etc/bashrc
+
+# It's NOT a good idea to change this file unless you know what you
+# are doing. It's much better to create a custom.sh shell script in
+# /etc/profile.d/ to make custom changes to your environment, as this
+# will prevent the need for merging in future updates.
+
+pathmunge () {
+    case ":${PATH}:" in
+        *:"$1":*)
+            ;;
+        *)
+            if [ "$2" = "after" ] ; then
+                PATH=$PATH:$1
+            else
+                PATH=$1:$PATH
+            fi
+    esac
+}
+
+
+if [ -x /usr/bin/id ]; then
+    if [ -z "$EUID" ]; then
+        # ksh workaround
+        EUID=`/usr/bin/id -u`
+        UID=`/usr/bin/id -ru`
+    fi
+    USER="`/usr/bin/id -un`"
+    LOGNAME=$USER
+    MAIL="/var/spool/mail/$USER"
+fi
+
+# Path manipulation
+if [ "$EUID" = "0" ]; then
+    pathmunge /usr/sbin
+    pathmunge /usr/local/sbin
+else
+    pathmunge /usr/local/sbin after
+    pathmunge /usr/sbin after
+fi
+
+HOSTNAME=`/usr/bin/hostname 2>/dev/null`
+HISTSIZE=1000
+if [ "$HISTCONTROL" = "ignorespace" ] ; then
+    export HISTCONTROL=ignoreboth
+else
+    export HISTCONTROL=ignoredups
+fi
+
+export PATH USER LOGNAME MAIL HOSTNAME HISTSIZE HISTCONTROL
+
+# By default, we want umask to get set. This sets it for login shell
+# Current threshold for system reserved uid/gids is 200
+# You could check uidgid reservation validity in
+# /usr/share/doc/setup-*/uidgid file
+if [ $UID -gt 199 ] && [ "`/usr/bin/id -gn`" = "`/usr/bin/id -un`" ]; then
+    umask 002
+else
+    umask 022
+fi
+
+for i in /etc/profile.d/*.sh /etc/profile.d/sh.local ; do
+    if [ -r "$i" ]; then
+        if [ "${-#*i}" != "$-" ]; then 
+            . "$i"
+        else
+            . "$i" >/dev/null
+        fi
+    fi
+done
+
+unset i
+unset -f pathmunge
+
+if [ -n "${BASH_VERSION-}" ] ; then
+        if [ -f /etc/bashrc ] ; then
+                # Bash login shells run only /etc/profile
+                # Bash non-login shells run only /etc/bashrc
+                # Check for double sourcing is done in /etc/bashrc.
+                . /etc/bashrc
+       fi
+fi
+[gaos74@pascal etc]$ pwd
+/etc
+[gaos74@pascal etc]$ cat /etc
+cat: /etc: Is a directory
+[gaos74@pascal etc]$ cat /etc
+cat: /etc: Is a directory
+[gaos74@pascal etc]$ cat profile
+# /etc/profile
+
+# System wide environment and startup programs, for login setup
+# Functions and aliases go in /etc/bashrc
+
+# It's NOT a good idea to change this file unless you know what you
+# are doing. It's much better to create a custom.sh shell script in
+# /etc/profile.d/ to make custom changes to your environment, as this
+# will prevent the need for merging in future updates.
+
+pathmunge () {
+    case ":${PATH}:" in
+        *:"$1":*)
+            ;;
+        *)
+            if [ "$2" = "after" ] ; then
+                PATH=$PATH:$1
+            else
+                PATH=$1:$PATH
+            fi
+    esac
+}
+
+
+if [ -x /usr/bin/id ]; then
+    if [ -z "$EUID" ]; then
+        # ksh workaround
+        EUID=`/usr/bin/id -u`
+        UID=`/usr/bin/id -ru`
+    fi
+    USER="`/usr/bin/id -un`"
+    LOGNAME=$USER
+    MAIL="/var/spool/mail/$USER"
+fi
+
+# Path manipulation
+if [ "$EUID" = "0" ]; then
+    pathmunge /usr/sbin
+    pathmunge /usr/local/sbin
+else
+    pathmunge /usr/local/sbin after
+    pathmunge /usr/sbin after
+fi
+
+HOSTNAME=`/usr/bin/hostname 2>/dev/null`
+HISTSIZE=1000
+if [ "$HISTCONTROL" = "ignorespace" ] ; then
+    export HISTCONTROL=ignoreboth
+else
+    export HISTCONTROL=ignoredups
+fi
+
+export PATH USER LOGNAME MAIL HOSTNAME HISTSIZE HISTCONTROL
+
+# By default, we want umask to get set. This sets it for login shell
+# Current threshold for system reserved uid/gids is 200
+# You could check uidgid reservation validity in
+# /usr/share/doc/setup-*/uidgid file
+if [ $UID -gt 199 ] && [ "`/usr/bin/id -gn`" = "`/usr/bin/id -un`" ]; then
+    umask 002
+else
+    umask 022
+fi
+
+for i in /etc/profile.d/*.sh /etc/profile.d/sh.local ; do
+    if [ -r "$i" ]; then
+        if [ "${-#*i}" != "$-" ]; then 
+            . "$i"
+        else
+            . "$i" >/dev/null
+        fi
+    fi
+done
+
+unset i
+unset -f pathmunge
+
+if [ -n "${BASH_VERSION-}" ] ; then
+        if [ -f /etc/bashrc ] ; then
+                # Bash login shells run only /etc/profile
+                # Bash non-login shells run only /etc/bashrc
+                # Check for double sourcing is done in /etc/bashrc.
+                . /etc/bashrc
+       fi
+fi
+------
+ 16:08:45 up 79 days,  7:17, 32 users,  load average: 0.17, 0.48, 0.44
+USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
+gaffena  pts/44   172.18.70.86     15:12   49:23   0.14s  0.14s -bash
+alvarr5  pts/47   172.17.60.105    15:20   41:24   0.05s  0.05s -bash
+wakyendj pts/13   172.17.241.111   15:15    7:31   0.20s  0.20s -bash
+bhattv11 pts/16   172.18.114.130   15:37   15:17   0.50s  0.50s -bash
+wangg97  pts/6    172.17.58.82     16:06    2:05   0.04s  0.04s -bash
+racharls pts/12   172.18.54.60     15:06   59:33   0.10s  0.10s -bash
+gaos74   pts/71   172.18.203.155   15:31    5.00s  0.55s  0.05s w
+wu509    pts/74   172.18.124.201   14:19    1:47m  0.06s  0.06s -bash
+zajkeskn pts/76   172.17.56.115    15:29    3.00s  0.35s  0.01s /usr/bi
+patem190 pts/103  172.18.54.42     12:08    2:15m  0.10s  0.10s -bash
+ukaegbuc pts/157  172.17.58.28     15:17    6:45   0.19s  0.19s -bash
+samplj   pts/165  172.18.61.36     14:22    1:46m  0.05s  0.05s -bash
+courtems pts/216  172.18.202.33    16:03    4:05   0.07s  0.07s -bash
+vassalm  pts/234  172.18.31.71     11:56    4:11m  0.07s  0.07s -bash
+lu120    pts/156  172.18.28.37     10:06    3:17m  0.25s  0.25s -bash
+zhaok31  pts/265  172.18.52.234    16:05    5.00s  0.06s  0.06s -bash
+ebrahp2  pts/263  172.17.71.211    12:08    1:55m  1.03s  1.03s -bash
+kaurm57  pts/171  172.17.7.33      15:57    5.00s  0.08s  0.08s -bash
+gaffena  pts/209  172.18.112.129   15:31   18:29   0.14s  0.14s -bash
+ebrahp2  pts/235  172.17.71.211    15:40   23:41   0.07s  0.07s -bash
+sorokinn pts/272  172.18.182.70    14:33   18:21   0.11s  0.11s -bash
+modyd1   pts/325  172.17.60.109    16:05    2:29   0.05s  0.05s -bash
+allabada pts/330  172.18.30.77     14:48    5.00s  0.26s  0.26s -bash
+rastom1  pts/341  172.17.1.27      15:53   14:29   0.06s  0.06s -bash
+asrans1  pts/351  172.18.21.248    15:57    4.00s  0.10s  0.10s -bash
+zhengz13 pts/352  172.18.199.165   15:58   10:24   0.04s  0.04s -bash
+lu120    pts/353  172.18.111.68    15:58    8:56   0.05s  0.05s -bash
+zhu37    pts/354  172.18.126.17    15:58    5.00s  0.50s  0.42s bash
+hasibih  pts/355  172.18.201.119   16:00    5:40   0.06s  0.06s -bash
+maruj    pts/356  172.17.63.106    16:00    5:16   0.07s  0.07s -bash
+racharls pts/357  172.17.60.120    16:04   41.00s  0.07s  0.07s -bash
+sahnia3  pts/358  172.17.62.119    16:05    4.00s  0.07s  0.07s -bash
