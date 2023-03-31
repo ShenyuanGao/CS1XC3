@@ -7,3 +7,6 @@
 [submodule "L08/1XC3"]
 	path = L08/1XC3
 	url = git@github.com:ShenyuanGao/1XC3.git
+[submodule "L09a/1XC3_L09"]
+	path = L09a/1XC3_L09
+	url = git@github.com:ShenyuanGao/1XC3_L09.git
