@@ -1,0 +1,10 @@
+sed -i 's/backwards/forwards/g' *.txt
+sed -i '/\includegraphics/d' *.tex
+sed -i 's/\begin{itemize}/\begin{enumerate}/g' *.tex
+sed -i 's/./[citation needed]./g' *.tex *.txt
+sed -i '100,300 s/\b[a-zA-Z]*ing\b/a gerund/g' *.tex
+sed -i '15,18d' *.log
+sed -i 's/\textbf/\textit/g' *.tex
+sed -i 's/[aeiouAEIOU]//g' *.tex *.txt
+sed -i '/^[^\%]*%/d' *.tex
+sed -i 's/[[:punct:]]/!/g' *.tex *.txt

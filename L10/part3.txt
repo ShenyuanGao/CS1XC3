@@ -1,0 +1,10 @@
+find . -type f -mtime -1
+find . -type f | wc -l
+find . -type f -empty
+find . -type f -size +1M
+find . -type f -size -100c
+find . -type f -size +500k -size -1M
+find . -type f -name "lab*.txt"
+find . -type f -name "*test*.sh"
+find . -type d -empty
+grep -r -n "password" 

@@ -1,0 +1,15 @@
+find . -name "*.tex"
+find . -name "*.tex" ! -name "template.tex"
+wc -l *.tex
+find . -name "*.tex" -o -name "*.pdf" -o -name "*.toc"
+find . -name "topic[7-9]*.pdf"
+find . -name "*~" -delete
+find . -name "#*#" -delete
+find . -name "??????????.png" -o -name "??????????.jpg" -o -name "??????????.bmp" -o -name "??????????.webp" > goodFiles.txt
+find . -name "*.log" -exec cat {} \; >> allTheLogs.log
+find . -name "*C*.aux" -exec sed -n '10p' {} \;
+find . -name "*.sh" -exec chmod +x {} \;
+find . -name "*and*" -exec head -n 10 {} \; >> allheads.txt
+find . -name "*.png" -o -name "*.jpg" -o -name "*.jpeg" -o -name "*.webp" -exec cp {} image_backup/ \;
+find . -name "*.png" -o -name "*.jpg" -o -name "*.jpeg" -o -name "*.webp" -exec cp {} image_backup/ \;
+find . -name "*.png" -o -name "*.jpg" -o -name "*.jpeg" -o -name "*.webp" -exec cp {} image_backup/ \;
